@@ -1,0 +1,10 @@
+.filter-group {
+  border-bottom: 1px solid #e4e4e4;
+  .card-header {
+    border-bottom: 0;
+  }
+
+  &:last-child {
+    border-bottom: 0;
+  }
+}

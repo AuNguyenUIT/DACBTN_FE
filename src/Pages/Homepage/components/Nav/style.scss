@@ -1,0 +1,20 @@
+.navbar-main {
+  background-color: var(--white);
+  .nav-link {
+    font-weight: 500;
+    color: black;
+    &:hover {
+      color: #666;
+    }
+  }
+}
+
+.navbar-main {
+  .nav-link {
+    font-weight: 500;
+    color: black;
+    &:hover {
+      color: #666;
+    }
+  }
+}
