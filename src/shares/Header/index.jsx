@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./style.scss";
 
@@ -16,7 +16,7 @@ function Header(props) {
                   alt="MyShopLogo"
                 />
                 <h5 className="text">UITShop</h5>
-                </Link>
+              </Link>
             </div>
             <div className="col-lg-6 col-sm-12">
               <form className="search">

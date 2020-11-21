@@ -2,10 +2,13 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function ProductsHeder(props) {
+  const { length } = props;
   return (
     <header className="border-bottom mb-4 pb-3">
       <div className="form-inline">
-        <span className="mr-md-auto text-muted">32 Items found </span>
+        <span className="mr-md-auto text-muted">
+          {length} &nbsp;Sản phẩm
+        </span>
         <select className="mr-2 form-control">
           <option>Latest items</option>
           <option>Trending</option>
@@ -17,6 +20,11 @@ function ProductsHeder(props) {
   );
 }
 
-ProductsHeder.propTypes = {};
+ProductsHeder.propTypes = {
+  length: PropTypes.number,
+};
+ProductsHeder.defaultProps = {
+  length: 0,
+};
 
 export default ProductsHeder;

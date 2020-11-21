@@ -23,7 +23,7 @@ function App() {
         <Switch>
           <Route path="/" exact component={HomePage} />
           <Route path="/shops" component={ShopPage} />
-          <Route path="/detail" component={DetailPage} />
+          <Route path="/detail/:id" component={DetailPage} />
           <Route path="/cart" component={ShoppingCartPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/login" component={LoginPage} />

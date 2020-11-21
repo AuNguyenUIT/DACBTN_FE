@@ -1,0 +1,101 @@
+{
+    "products":[
+    {
+        "id":"1",
+        "category":1,
+        "name": "Áo Khoác Nữ Cá Tính",
+        "price": 500000,
+        "discount":20,
+        "isFreeShip":true,
+        "description":"Đây là áo khoác nữ. sử dụng các chất liệu tốt nhât ................",
+        "colors":["Hồng", "Tím", "Xanh"],
+        "sizes": ["S", "XS"],
+        "quanSold":20,
+        "inventory":100,
+        "comments":[],
+        "images":[
+            "https://cdn.gumac.vn//image/t82020/ao-in-co-gai-dhcpnv-802-3040820201349452410.jpg",
+            "https://cdn.gumac.vn//image/t82020/ao-in-co-gai-dhcpnv-802-2040820201349452410.jpg"
+        ],
+        "createAt": 1603126800000
+
+    },
+    {
+        "id":"2",
+        "category":2,
+        "name": "Áo Khoác Nam Cá Tính",
+        "price": 400000,
+        "discount":20,
+        "isFreeShip":true,
+        "description":"Đây là áo khoác nữ. sử dụng các chất liệu tốt nhât ................",
+        "colors":["Hồng", "Tím", "Xanh"],
+        "sizes": ["S", "XS"],
+        "quanSold":21,
+        "inventory":100,
+        "comments":[],
+        "images":[
+          
+            "https://cdn.gumac.vn//image/t82020/ao-in-co-gai-dhcpnv-802-2040820201349452410.jpg",
+            "https://cdn.gumac.vn//image/t82020/ao-in-co-gai-dhcpnv-802-3040820201349452410.jpg",
+            "https://cdn.gumac.vn//image/t82020/ao-in-co-gai-dhcpnv-802-2040820201349452410.jpg"
+        ],
+        "createAt": 1605805200000
+    },
+    {
+        "id":"3",
+        "category":3,
+        "name": "Áo  Sơ Mi Nam",
+        "price": 450000,
+        "discount":20,
+        "isFreeShip":true,
+        "description":"Đây là áo khoác nữ. sử dụng các chất liệu tốt nhât ................",
+        "colors":["Trắng", "Đen ", "Xanh"],
+        "sizes": ["S", "XS"],
+        "quanSold":22,
+        "inventory":100,
+        "comments":[],
+        "images":[
+            "https://cdn.gumac.vn//image/t82020/ao-in-co-gai-dhcpnv-802-3040820201349452410.jpg",
+            "https://cdn.gumac.vn//image/t82020/ao-in-co-gai-dhcpnv-802-2040820201349452410.jpg"
+        ],
+        "createAt": 1605632400000
+    },
+    {
+        "id":"4",
+        "category":3,
+        "name": "Áo Sơ Mi Nữ",
+        "price": 700000,
+        "discount":20,
+        "isFreeShip":true,
+        "description":"Đây là áo khoác nữ. sử dụng các chất liệu tốt nhât ................",
+        "colors":["Hồng", "Tím", "Xanh"],
+        "sizes": ["S", "XS"],
+        "quanSold":23,
+        "inventory":100,
+        "comments":[],
+        "images":[
+            "https://cdn.gumac.vn//image/t82020/ao-in-co-gai-dhcpnv-802-3040820201349452410.jpg",
+            "https://cdn.gumac.vn//image/t82020/ao-in-co-gai-dhcpnv-802-2040820201349452410.jpg"
+        ], "createAt": 1605632400000
+    }
+],
+"categories":[
+    {
+        "id":1,
+        "name":"Áo Nữ"
+    },
+    {
+        "id":2,
+        "name":"Áo Nam"
+    },
+    {
+        "id":3,
+        "name":"Áo Sơ Mi"
+    }
+],
+"comments":[],
+"users":[],
+"orders":[],
+"carts":[],
+"detailOrder":{}
+}

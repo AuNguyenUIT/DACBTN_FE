@@ -2,12 +2,14 @@ import PropTypes from "prop-types";
 import React, { useEffect, useRef, useState } from "react";
 import "./style.scss";
 function InputQuantity(props) {
-  const { quantity, handleChangeQuantity } = props;
+  const { quantity, handleChangeQuantity, max } = props;
   const [va, setValue] = useState(quantity);
   const inputEl = useRef(null);
   useEffect(() => {
     handleChangeQuantity(va);
   }, [va]);
+
+  useEffect(() => {}, []);
   return (
     <div className="input-group mb-3 input-spinner">
       <div className="input-group-prepend">
@@ -31,7 +33,11 @@ function InputQuantity(props) {
         value={va}
         ref={inputEl}
         onChange={(event) => {
-          setValue(event.target.value);
+          if (event.target.value > max) {
+            setValue(max);
+          } else {
+            setValue(event.target.value);
+          }
         }}
       />
       <div className="input-group-append">
@@ -40,8 +46,9 @@ function InputQuantity(props) {
           type="button"
           name="button-plus"
           onClick={() => {
-            // setValue(++inputEl.current.value);
-            setValue(++inputEl.current.value);
+            if (inputEl.current.value < max) {
+              setValue(++inputEl.current.value);
+            }
           }}
         >
           +
@@ -54,9 +61,11 @@ function InputQuantity(props) {
 InputQuantity.propTypes = {
   quantity: PropTypes.number,
   handleChangeQuantity: PropTypes.func,
+  max: PropTypes.number,
 };
 InputQuantity.defaultProps = {
   quantity: 1,
+  max: 1000,
   handleChangeQuantity: (data) => {
     // console.log(parseFloat(data));
   },

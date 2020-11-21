@@ -37,15 +37,3 @@
 p {
   margin-bottom: 0;
 }
-.img-wrap {
-  overflow: hidden;
-  position: relative;
-}
-.img-wrap img {
-  height: 100%;
-  max-width: 100%;
-  width: auto;
-  display: inline-block;
-  -o-object-fit: cover;
-  object-fit: cover;
-}

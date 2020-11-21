@@ -29,4 +29,4 @@ class axiosService {
   }
 }
 
-export default axiosService;
+export default new axiosService();

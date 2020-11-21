@@ -6,13 +6,11 @@ function Products(props) {
   const { products } = props;
   return (
     <div className="row">
-      {products.length
-        ? products.map((product) => (
-            <div className="col-4" key={product.id}>
-              <Product product={product} />
-            </div>
-          ))
-        : null}
+      {products.map((product) => (
+        <div className="col-md-3" key={product.id}>
+          <Product product={product} />
+        </div>
+      ))}
     </div>
   );
 }
@@ -20,9 +18,7 @@ function Products(props) {
 Products.propTypes = {
   products: PropTypes.array,
 };
-
 Products.defaultProps = {
   products: [],
 };
-
 export default Products;

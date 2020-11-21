@@ -270,11 +270,19 @@ figure {
   object-fit: cover;
   flex-shrink: 0;
   flex-grow: 0;
+ 
   &-wrap {
     text-align: center;
     display: block;
+    overflow: hidden;
+  position: relative;
     img {
+      height: auto;
       max-width: 100%;
+      width: auto;
+      display: inline-block;
+      -o-object-fit: cover;
+      object-fit: cover;
     }
   }
   &-xs {
