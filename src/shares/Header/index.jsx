@@ -1,8 +1,61 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import {
+  Dropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+} from "reactstrap";
+import { logout } from "../../actions/user";
 import "./style.scss";
 
 function Header(props) {
+  const isLogin = useSelector((state) => state.user.isLogin);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const toggle = () => setDropdownOpen((prevState) => !prevState);
+  const dispatch = useDispatch();
+  const renderIsLogin = () => {
+    return (
+      <Dropdown
+        isOpen={dropdownOpen}
+        toggle={toggle}
+        className="widget-header icontext"
+        style={{ cursor: "pointer" }}
+      >
+        <DropdownToggle tag="div" className="widget-header icontext">
+          <img
+            src={`${currentUser.avatar}`}
+            alt=""
+            className="icon icon-sm rounded-circle "
+          />
+          <div className="text">
+            <span className="text-muted">
+              Xin Chào&nbsp;{currentUser.name}!
+            </span>
+          </div>
+        </DropdownToggle>
+        <DropdownMenu>
+          <DropdownItem>
+            <Link to="/profile">Trang Cá Nhân</Link>
+          </DropdownItem>
+          <DropdownItem>
+            <Link to="/orders-history">Lịch Sử Đặt Hàng</Link>
+          </DropdownItem>
+          <DropdownItem>
+            <div
+              onClick={() => {
+                dispatch(logout());
+              }}
+            >
+              Đăng xuất
+            </div>
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
+    );
+  };
   return (
     <header className="section-header sticky">
       <section className="header-main border-bottom">
@@ -55,21 +108,19 @@ function Header(props) {
                     0
                   </span>
                 </div>
-                <div className="widget-header">
-                  <Link
-                    to="/login"
-                    className="icon icon-sm rounded-circle border"
-                  >
-                    <i className="fa fa-user"></i>
-                  </Link>
-                  {/* <div className="text">
-                    <span className="text-muted">Welcome!</span>
-                    <div>
-                      <Link to="/login">Sign in</Link> &nbsp;|&nbsp;|
-                      <Link to="register">Register</Link>
-                    </div>
-                  </div> */}
-                </div>
+
+                {isLogin ? (
+                  renderIsLogin()
+                ) : (
+                  <div className="widget-header icontext">
+                    <Link
+                      to="/login"
+                      className="icon icon-sm rounded-circle border"
+                    >
+                      <i className="fa fa-user"></i>
+                    </Link>
+                  </div>
+                )}
               </div>
             </div>
           </div>

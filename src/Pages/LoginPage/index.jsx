@@ -1,10 +1,15 @@
 import React from "react";
-import PropTypes from "prop-types";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { loginUser } from "../../actions/user";
 import LoginForm from "./components/LoginForm";
 
 function LoginPage(props) {
+  const dispatch = useDispatch(null);
+  const handleLogin = (data) => {
+    dispatch(loginUser(data));
+  };
   return (
     <>
       <Breadcrumb>
@@ -16,7 +21,15 @@ function LoginPage(props) {
         </div>
       </Breadcrumb>
       <section className="container section-content padding-bottom">
-        <LoginForm />
+        <div className="card mx-auto" style={{ maxWidth: "380px" }}>
+          <div className="card-body">
+            <header className="mb-4">
+              <h4 className="card-title mb-4">Đăng nhập</h4>
+            </header>
+
+            <LoginForm handleLogin={handleLogin} />
+          </div>
+        </div>
       </section>
     </>
   );

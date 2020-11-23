@@ -13,8 +13,8 @@ class axiosService {
   handleError(error) {
     return Promise.reject(error);
   }
-  get(url) {
-    return this.instance.get(url);
+  get(url, Header = {}) {
+    return this.instance.get(url, Header);
   }
   post(url, body) {
     return this.instance.post(url, body);

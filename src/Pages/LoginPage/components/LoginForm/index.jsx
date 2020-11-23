@@ -1,58 +1,95 @@
-import React from "react";
+import { FastField, Form, Formik } from "formik";
 import PropTypes from "prop-types";
+import React from "react";
 import { Link } from "react-router-dom";
+import * as Yup from "yup";
+import InputField from "../../../../shares/Custom-Fields/InputField";
+const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .trim()
+    .email("Không đúng định dạng email")
+    .required("Yêu cầu nhập email"),
+  password: Yup.string().min(6, "Quá Ngắn").required("Yêu cầu nhập"),
+});
 
 function LoginForm(props) {
+  const { handleLogin } = props;
+  const initialValues = {
+    email: "",
+    password: "",
+    isRemember: false,
+  };
+
   return (
-    <div className="card mx-auto" style={{ maxWidth: "380px" }}>
-      <div className="card-body">
-        <h4 className="card-title mb-4">Đăng nhập</h4>
-        <form>
-          <div className="form-group">
-            <label>Email</label>
-            <input
-              name="email"
-              className="form-control"
-              placeholder="ex. name@gmail.com"
-              type="email"
-            />
-          </div>
+    <>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={LoginSchema}
+        onSubmit={(values) => {
+          handleLogin(values);
+        }}
+      >
+        {(props) => {
+          const { values, handleChange, handleBlur } = props;
+          return (
+            <Form>
+              <FastField
+                component={InputField}
+                name="email"
+                label="Email"
+                type="email"
+                placeholder="ex.name@gmail.com"
+              />
 
-          <div className="form-group">
-            <Link to="forgot" className="float-right">
-              Quên mật khẩu
-            </Link>
-            <label>Mật khẩu</label>
-            <input
-              className="form-control"
-              placeholder="*****************"
-              type="password"
-              name="password"
-            />
-          </div>
+              <div className="form-group">
+                <Link to="forgot" className="float-right">
+                  Quên mật khẩu
+                </Link>
+                <FastField
+                  component={InputField}
+                  name="password"
+                  label="Mật khẩu"
+                  type="password"
+                  placeholder="*****************"
+                />
+              </div>
 
-          <div className="form-group">
-            <label className="custom-control custom-checkbox">
-              <input type="checkbox" className="custom-control-input" />
-              <div className="custom-control-label">Duy trì đăng nhập</div>
-            </label>
-          </div>
+              <div className="form-group">
+                <label className="custom-control custom-checkbox">
+                  <input
+                    type="checkbox"
+                    name="isRemember"
+                    className="custom-control-input"
+                    value={values.isRemember}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                  />
+                  <div className="custom-control-label">Duy trì đăng nhập</div>
+                </label>
+              </div>
 
-          <div className="form-group">
-            <button type="submit" className="btn btn-primary btn-block">
-              Đăng nhập
-            </button>
-          </div>
-        </form>
-      </div>
-      <div className="card-footer text-center">
-        Bạn chưa có tài khoản?
-        <Link to="/register">&nbsp; Đăng ký</Link>
-      </div>
-    </div>
+              <div className="form-group">
+                <button type="submit" className="btn btn-primary btn-block">
+                  Đăng nhập
+                </button>
+              </div>
+
+              <div className="card-footer text-center">
+                Bạn chưa có tài khoản?
+                <Link to="/register">&nbsp; Đăng ký</Link>
+              </div>
+            </Form>
+          );
+        }}
+      </Formik>
+    </>
   );
 }
 
-LoginForm.propTypes = {};
-
+LoginForm.propTypes = {
+  handleLogin: PropTypes.func,
+};
+LoginForm.defaultProps = {
+  handleLogin: () => {},
+};
 export default LoginForm;
