@@ -4,6 +4,8 @@ import "./App.scss";
 import Footer from "./shares/Footer";
 import Header from "./shares/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginUser } from "./actions/user";
 
 const HomePage = lazy(() => import("./Pages/Homepage"));
 const ShopPage = lazy(() => import("./Pages/ShopPage"));
@@ -16,6 +18,12 @@ const ProfilePage = lazy(() => import("./Pages/ProfilePage"));
 const OrdersHistoryPage = lazy(() => import("./Pages/OrdersHistoryPage"));
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(
+      loginUser({ email: "aunguyenuit@gmail.com", password: "kim yen 0211" })
+    );
+  }, []);
   return (
     <Router>
       <Header />

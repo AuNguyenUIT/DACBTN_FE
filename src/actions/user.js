@@ -44,6 +44,25 @@ export const loginUserFailed = (payload) => {
   };
 };
 
+export const updateProfile = (payload) => {
+  return {
+    type: userTypes.UPDATE_PROFILE,
+    payload,
+  };
+};
+export const updateProfileSuccess = (payload) => {
+  return {
+    type: userTypes.UPDATE_PROFILE_SUCCESS,
+    payload,
+  };
+};
+export const updateProfileFailed = (payload) => {
+  return {
+    type: userTypes.UPDATE_PROFILE_FAILED,
+    payload,
+  };
+};
+
 export const logout = () => {
   return {
     type: userTypes.LOG_OUT,

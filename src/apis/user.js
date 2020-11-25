@@ -15,3 +15,7 @@ export const getUser = (params = {}) => {
   }
   return axiosService.get(`${API_ENDPOINT}/${url}${queryParams}`);
 };
+
+export const putUser = (id = "", body = {}) => {
+  return axiosService.put(`${API_ENDPOINT}/${url}/${id}`, body);
+};

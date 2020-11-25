@@ -177,6 +177,16 @@ function RegisterForm(props) {
                   id={"province"}
                   options={provincesOption}
                   placeholder={"Chọn Tỉnh"}
+                  styles={{
+                    control: (base) => ({
+                      ...base,
+                      borderColor:
+                        errors["province"] && touched["province"]
+                          ? "#dc3545"
+                          : "#ced4da",
+                      boxShadow: "none",
+                    }),
+                  }}
                 />
                 {errors["province"] && touched["province"] && (
                   <small className="text-danger">{errors["province"]}</small>
@@ -186,6 +196,16 @@ function RegisterForm(props) {
               <div className="col-md-6 form-group">
                 <label htmlFor="district">Tỉnh / Thành phố</label>
                 <Select
+                  styles={{
+                    control: (base) => ({
+                      ...base,
+                      borderColor:
+                        errors["province"] && touched["province"]
+                          ? "#dc3545"
+                          : "#ced4da",
+                      boxShadow: "none",
+                    }),
+                  }}
                   onChange={(value) => {
                     setFieldTouched("district", true);
                     setFieldValue("district", value.value);

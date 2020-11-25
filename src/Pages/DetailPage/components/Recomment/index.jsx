@@ -17,7 +17,7 @@ function ReComment(props) {
       <div className="row">
         {products.map((product, index) =>
           product.id !== productId ? (
-            <div className="col-md-3" key={index}>
+            <div className="col-6 col-md-3" key={index}>
               <Product product={product} />
             </div>
           ) : null

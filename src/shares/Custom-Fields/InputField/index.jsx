@@ -44,7 +44,11 @@ function InputField(props) {
         placeholder={placeholder}
         disabled={disable}
         {...field}
-        className="form-control"
+        className={
+          errors[name] && touched[name]
+            ? "form-control border border-danger"
+            : "form-control "
+        }
       />
       {(type === "password" || type === "email") && (
         <input
