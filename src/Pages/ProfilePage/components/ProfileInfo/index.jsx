@@ -3,8 +3,21 @@ import PropTypes from "prop-types";
 import { FastField, Form, Formik } from "formik";
 import InputField from "../../../../shares/Custom-Fields/InputField";
 import Select from "react-select";
+import * as Yup from "yup";
 import { getDistrict, getProvinces } from "../../../../apis/location";
+const profileSchema = Yup.object().shape({
+  email: Yup.string()
+    .trim()
+    .email("Không đúng định dạng email")
+    .required("Yêu cầu nhập email"),
 
+  name: Yup.string().required("Yêu cầu nhập tên"),
+  surname: Yup.string().required("Yêu cầu nhập tên"),
+  gender: Yup.string().required("Yêu cầu chọn giới tính"),
+  address: Yup.string().required("Yêu cầu nhập địa chỉ"),
+  province: Yup.number().required("Yêu cầu chọn tỉnh"),
+  district: Yup.number().required("Yêu cầu chọn huyện"),
+});
 function ProfileInfo(props) {
   const { currentUser, handleUpdateProfile } = props;
 
@@ -62,6 +75,7 @@ function ProfileInfo(props) {
       onSubmit={(values) => {
         handleUpdateProfile(values, "INFO");
       }}
+      validationSchema={profileSchema}
     >
       {(props) => {
         const {
@@ -157,7 +171,20 @@ function ProfileInfo(props) {
                     setFieldTouched("province", true);
                     setFieldValue("province", values.province);
                   }}
+                  styles={{
+                    control: (base) => ({
+                      ...base,
+                      borderColor:
+                        errors["province"] && touched["province"]
+                          ? "#dc3545"
+                          : "#ced4da",
+                      boxShadow: "none",
+                    }),
+                  }}
                 />
+                {errors["province"] && touched["province"] && (
+                  <small className="text-danger">{errors["province"]}</small>
+                )}
               </div>
               <div className="form-group col-md-6">
                 <label>Quận / Huyện</label>
@@ -175,7 +202,20 @@ function ProfileInfo(props) {
                     setFieldTouched("district", true);
                     setFieldValue("district", values.district);
                   }}
+                  styles={{
+                    control: (base) => ({
+                      ...base,
+                      borderColor:
+                        errors["province"] && touched["province"]
+                          ? "#dc3545"
+                          : "#ced4da",
+                      boxShadow: "none",
+                    }),
+                  }}
                 />
+                {errors["district"] && touched["district"] && (
+                  <small className="text-danger">{errors["district"]}</small>
+                )}
               </div>
             </div>
 
