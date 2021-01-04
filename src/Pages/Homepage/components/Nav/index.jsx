@@ -4,41 +4,34 @@ import "./style.scss";
 import { Link } from "react-router-dom";
 
 function Nav(props) {
+  const { categories } = props;
   return (
     <nav className="navbar navbar-main navbar-expand-lg border-bottom ">
       <div className="container">
         <ul className="navbar-nav">
           <li className="nav-item ">
-            <Link to="/shops?cate=ao" className="nav-link">
+            <Link to="/shops" className="nav-link">
               <strong>All category</strong>
             </Link>
           </li>
-          <li className="nav-item">
-            <Link to="/shops?cate=ao" className="nav-link">
-              Áo
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/shops?cate=ao" className="nav-link">
-              Quần
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/shops?cate=ao" className="nav-link">
-              Giày
-            </Link>
-          </li>
-          <li className="nav-item">
-            <Link to="/shops?cate=ao" className="nav-link">
-              Baby &amp; Toys
-            </Link>
-          </li>
+          {categories.map((category) => (
+            <li className="nav-item" key={category.id}>
+              <Link to={`/shops?category=${category.id}`} className="nav-link">
+                {category.name}
+              </Link>
+            </li>
+          ))}
         </ul>
       </div>
     </nav>
   );
 }
 
-Nav.propTypes = {};
+Nav.propTypes = {
+  categories: PropTypes.array,
+};
+Nav.defaultProps = {
+  categories: [],
+};
 
 export default Nav;

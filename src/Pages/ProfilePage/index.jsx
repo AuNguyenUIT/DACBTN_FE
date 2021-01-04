@@ -5,9 +5,9 @@ import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { updateProfile } from "../../actions/user";
 import ProfileAvatar from "./components/ProfileAvatar";
 import ProfileInfo from "./components/ProfileInfo";
-
 function Profile(props) {
   const currentUser = useSelector((state) => state.user.currentUser);
+  const isLogin = useSelector((state) => state.user.isLogin);
   const dispatch = useDispatch();
   const handleUpdateProfile = (data, type) => {
     if (type === "INFO") {
@@ -28,27 +28,28 @@ function Profile(props) {
           <BreadcrumbItem active>Trang Cá Nhân</BreadcrumbItem>
         </div>
       </Breadcrumb>
-
-      <section className="container section-name padding-y-sm">
-        <div className=" card">
-          <div className="card-body row">
-            <div className="col-md-4">
-              <ProfileAvatar
-                avatar={currentUser.avatar}
-                name={currentUser.name}
-                surname={currentUser.surname}
-                handleUpdateProfile={handleUpdateProfile}
-              />
-            </div>
-            <div className="col-md-8">
-              <ProfileInfo
-                currentUser={currentUser}
-                handleUpdateProfile={handleUpdateProfile}
-              />
+      {isLogin && (
+        <section className="container section-name padding-y-sm">
+          <div className=" card">
+            <div className="card-body row">
+              <div className="col-md-4">
+                <ProfileAvatar
+                  avatar={currentUser?.avatar}
+                  name={currentUser?.name}
+                  surname={currentUser?.surname}
+                  handleUpdateProfile={handleUpdateProfile}
+                />
+              </div>
+              <div className="col-md-8">
+                <ProfileInfo
+                  currentUser={currentUser}
+                  handleUpdateProfile={handleUpdateProfile}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
     </>
   );
 }

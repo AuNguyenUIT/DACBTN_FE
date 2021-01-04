@@ -1,27 +1,66 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { getProduct } from "../../../../../apis/products";
 
 function CheckoutItem(props) {
+  const { cart, price } = props;
+  const [product, setProduct] = useState({
+    images: [],
+  });
+  useEffect(() => {
+    getProduct(cart.pid)
+      .then((res) => {
+        setProduct(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  useEffect(() => {
+    cart.quantity * product.price && price(cart.quantity * product.price);
+  }, [product]);
   return (
     <div className="col-md-6">
-      <figure className="itemside mb-3">
+      <Link to={`/detail/${product.id}`} className="itemside mb-3">
         <div className="aside">
           <img
-            src="https://bootstrap-ecommerce.com/bootstrap-ecommerce-html/images/items/1.jpg"
-            className="border img-xs"
-            alt="name"
+            src={`${product.images[0]}`}
+            className="border img-sm"
+            alt={`${product.name}`}
           />
         </div>
         <figcaption className="info">
-          <p>Name of the product goes here or title</p>
-          <span>2x $290 = $430 </span>
+          <p>{product.name + "-" + cart.size + "-" + cart.color}</p>
+          <span>
+          
+            {cart.quantity +
+              "x" +
+              new Intl.NumberFormat("vn-VN", {
+                style: "currency",
+                currency: "VND",
+              }).format(product.price)
+              +
+              "=" +
+              new Intl.NumberFormat("vn-VN", {
+                style: "currency",
+                currency: "VND",
+              }).format(cart.quantity * product.price)
+              }
+          </span>
         </figcaption>
-      </figure>
+      </Link>
     </div>
   );
 }
 
-CheckoutItem.propTypes = {};
+CheckoutItem.propTypes = {
+  cart: PropTypes.object,
+  price: PropTypes.func,
+};
+CheckoutItem.defaultProps = {
+  cart: {},
+  price: null,
+};
 
 export default CheckoutItem;

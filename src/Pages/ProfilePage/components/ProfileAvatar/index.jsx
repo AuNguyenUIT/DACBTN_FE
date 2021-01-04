@@ -1,10 +1,9 @@
-import React, { useState } from "react";
 import PropTypes from "prop-types";
+import React, { useState } from "react";
 import "./style.scss";
 
 function ProfileAvatar(props) {
   const { name, avatar, surname, handleUpdateProfile } = props;
-
   const [urlAvatar, setUrlAvatar] = useState(avatar);
 
   return (

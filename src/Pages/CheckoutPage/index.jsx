@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import CheckoutInfo from "./components/CheckoutInfo";
@@ -7,6 +8,13 @@ import CheckoutTotal from "./components/CheckoutTotal";
 import "./style.scss";
 
 function CheckoutPage(props) {
+  const currentUser = useSelector((state) => state.user.currentUser);
+  const isLogin = useSelector((state) => state.user.isLogin);
+  const carts = useSelector((state) => state.carts);
+  const [price, setPrice] = useState(0);
+  const totalPrice = (total) => {
+    setPrice(total);
+  };
   return (
     <>
       <Breadcrumb>
@@ -25,15 +33,15 @@ function CheckoutPage(props) {
                 <header className="mb-4">
                   <h4 className="card-title">Giỏ Hàng</h4>
                 </header>
-                <CheckoutList />
+                <CheckoutList carts={carts} totalPrice={totalPrice} />
               </article>
               <article className="card-body border-top">
-                <CheckoutTotal />
+                <CheckoutTotal totalPrice={price} items={carts.length} />
               </article>
             </div>
           </div>
           <div className="col-5">
-            <CheckoutInfo />
+            <CheckoutInfo currentUser={currentUser} />
           </div>
         </div>
       </section>

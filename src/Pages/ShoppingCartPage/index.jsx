@@ -1,11 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Carts from "./Carts";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import CartTotal from "./CartTotal";
+import { useSelector } from "react-redux";
 
 function ShoppingCartPage(props) {
+  const carts = useSelector((state) => state.carts);
+  const [price, setPrice] = useState(0);
+
+  const totalPrice = (total) => {
+    setPrice(total);
+  };
+
   return (
     <>
       <Breadcrumb>
@@ -23,10 +31,10 @@ function ShoppingCartPage(props) {
         <div className="container">
           <div className="row">
             <aside className="col-lg-9">
-              <Carts />
+              <Carts carts={carts} totalPrice={totalPrice} />
             </aside>
             <aside className="col-lg-3">
-              <CartTotal />
+              <CartTotal totalPricce={price} />
             </aside>
           </div>
         </div>

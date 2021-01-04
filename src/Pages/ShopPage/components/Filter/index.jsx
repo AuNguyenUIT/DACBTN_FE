@@ -1,55 +1,73 @@
 import React from "react";
 import "./styles.scss";
-
+import PropTypes from "prop-types";
 function FilterProduct(props) {
+  const { categories, handleChangeFilter, filter } = props;
+  // const [valueFilter, setValueFilter] = useState(filter);
+  console.log();
   return (
     <div className="card">
-      <article className="filter-group">
+      {/* <article className="filter-group">
         <header className="card-header">
           <div>
-            <h6 className="title">Product type</h6>
+            <h6 className="title">Sắp Xếp</h6>
           </div>
         </header>
         <div className="filter-content collapse show" id="toggler" style={{}}>
           <div className="card-body">
             <form className="pb-3">
               <div className="input-group">
-                <select className="mr-2 form-control" defaultValue="all">
-                  <option value="all">Tất Cả</option>
-                  <option value="new">Mới</option>
-                  <option value="popular">Phổ biến</option>
-                  <option value="hot">Bán Chạy</option>
-                  <option value="sale">Sale</option>
+                <select
+                  className="mr-2 form-control"
+                  value={valueFilter}
+                  onChange={(event) => {
+                    console.log(event.target.value);
+                    setValueFilter(event.target.value);
+                    handleChangeFilter(event.target.value);
+                  }}
+                >
+                  <option value="">Tất Cả</option>
+                  {categories.map((category) => (
+                    <option key={category.id} value={`category=${category.id}`}>
+                      {category.name}
+                    </option>
+                  ))}
                 </select>
               </div>
             </form>
-
-            {/* card-body.// */}
           </div>
         </div>
-      </article>
-      {/* filter-group  .// */}
+      </article> */}
       <article className="filter-group">
         <header className="card-header">
           <div>
-            <h6 className="title">Brands</h6>
+            <h6 className="title">Danh Mục</h6>
           </div>
         </header>
-        <div className="filter-content collapse show">
+        <div className="filter-content collapse show" id="toggler" style={{}}>
           <div className="card-body">
-            <label className="custom-control custom-checkbox">
-              <input
-                type="checkbox"
-                defaultChecked
-                className="custom-control-input"
-              />
-              <div className="custom-control-label">Mercedes</div>
-            </label>
+            <form className="pb-3">
+              <div className="input-group">
+                <select
+                  className="mr-2 form-control"
+                  value={`category=${filter.category}`}
+                  onChange={(event) => {
+                    // setValueFilter(event.target.value);
+                    handleChangeFilter(event.target.value);
+                  }}
+                >
+                  <option value="">Tất Cả</option>
+                  {categories.map((category) => (
+                    <option key={category.id} value={`category=${category.id}`}>
+                      {category.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </form>
           </div>
-          {/* card-body.// */}
         </div>
       </article>
-      {/* filter-group .// */}
       <article className="filter-group">
         <header className="card-header">
           <div>
@@ -76,44 +94,25 @@ function FilterProduct(props) {
                 />
               </div>
             </div>
-            {/* form-row.// */}
+
             <button className="btn btn-block btn-primary">Apply</button>
           </div>
-          {/* card-body.// */}
         </div>
-      </article>
-      {/* filter-group .// */}
-      <article className="filter-group">
-        <header className="card-header">
-          <div>
-            <h6 className="title">Sizes</h6>
-          </div>
-        </header>
-
-        <div className="card-body">
-          <label className="checkbox-btn">
-            <input type="checkbox" />
-            <span className="btn btn-light"> XS </span>
-          </label>
-          <label className="checkbox-btn">
-            <input type="checkbox" />
-            <span className="btn btn-light"> SM </span>
-          </label>
-          <label className="checkbox-btn">
-            <input type="checkbox" />
-            <span className="btn btn-light"> LG </span>
-          </label>
-          <label className="checkbox-btn">
-            <input type="checkbox" />
-            <span className="btn btn-light"> XXL </span>
-          </label>
-        </div>
-        {/* card-body.// */}
       </article>
     </div>
   );
 }
 
-FilterProduct.propTypes = {};
+FilterProduct.propTypes = {
+  filler: PropTypes.object,
+  categories: PropTypes.array,
+  handleChangeFilter: PropTypes.func,
+};
+
+FilterProduct.defaultProps = {
+  filler: {},
+  categories: [],
+  handleChangeFilter: () => ({}),
+};
 
 export default FilterProduct;

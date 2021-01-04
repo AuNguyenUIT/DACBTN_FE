@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { getProducts } from "../../apis/products";
 import Intro from "./components/Intro";
@@ -8,6 +9,7 @@ import Specials from "./components/Specials";
 // import { Nav } from "reactstrap";
 
 function HomePage(props) {
+  const categories = useSelector((state) => state.categories);
   const [popularProducts, setPopularProducts] = useState([]);
   const [newProducts, setNewProducts] = useState([]);
   useEffect(() => {
@@ -30,14 +32,13 @@ function HomePage(props) {
   }, []);
   return (
     <>
-      <Nav />
+      <Nav categories={categories} />
       <Intro />
       <div className="container">
-        <Specials />
         <section className="section-name padding-y-sm">
           <header className="section-heading">
             <Link
-              to="/shops?type=popular"
+              to="/shops?_sort=quanSold&amp;_order=desc"
               className="btn btn-outline-primary float-right"
             >
               Xem thêm
@@ -46,10 +47,11 @@ function HomePage(props) {
           </header>
           <Products products={popularProducts} />
         </section>
+        <Specials />
         <section className="section-name padding-y-sm">
           <header className="section-heading">
             <Link
-              to="/shops?type=new"
+              to="/shops?_sort=createAt&amp;_order=desc"
               className="btn btn-outline-primary float-right"
             >
               Xem thêm
@@ -58,6 +60,7 @@ function HomePage(props) {
           </header>
           <Products products={newProducts} />
         </section>
+      
       </div>
     </>
   );

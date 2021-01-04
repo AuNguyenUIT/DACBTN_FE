@@ -1,11 +1,13 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense, useEffect, useMemo } from "react";
 import "./App.scss";
 
 import Footer from "./shares/Footer";
 import Header from "./shares/Header";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { loginUser } from "./actions/user";
+import { getCategories } from "./actions/categories";
+import { getCarts } from "./actions/carts";
 
 const HomePage = lazy(() => import("./Pages/Homepage"));
 const ShopPage = lazy(() => import("./Pages/ShopPage"));
@@ -19,11 +21,20 @@ const OrdersHistoryPage = lazy(() => import("./Pages/OrdersHistoryPage"));
 
 function App() {
   const dispatch = useDispatch();
-  useEffect(() => {
+  useMemo(()=>{
     dispatch(
       loginUser({ email: "aunguyenuit@gmail.com", password: "kim yen 0211" })
     );
+  },[])
+  const user = useSelector((state) => state.user);
+  useEffect(() => {
+    dispatch(getCategories());
   }, []);
+  useEffect(() => {
+    if (user.isLogin) {
+      dispatch(getCarts({uid:user.currentUser.id}));
+    }
+  }, [user]);
   return (
     <Router>
       <Header />

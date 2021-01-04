@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 function CartTotal(props) {
+  const { totalPricce } = props;
   return (
     <div className="card">
       <div className="card-body">
@@ -18,7 +19,7 @@ function CartTotal(props) {
         </div>
         <dl className="dlist-align">
           <dt>Tạm tính:</dt>
-          <dd className="text-right">$938.50</dd>
+          <dd className="text-right">{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPricce)}</dd>
         </dl>
         <dl className="dlist-align">
           <dt>Giảm:</dt>
@@ -27,7 +28,7 @@ function CartTotal(props) {
         <dl className="dlist-align">
           <dt>Tổng tiền:</dt>
           <dd className="text-right text-dark">
-            <strong>$938.50</strong>
+            <strong>{new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(totalPricce)}</strong>
           </dd>
         </dl>
         <hr />
@@ -43,6 +44,11 @@ function CartTotal(props) {
   );
 }
 
-CartTotal.propTypes = {};
+CartTotal.propTypes = {
+  totalPricce: PropTypes.number
+};
+CartTotal.defaultProps={
+  totalPricce:0
+}
 
 export default CartTotal;

@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Dropdown,
-  DropdownToggle,
-  DropdownMenu,
   DropdownItem,
+  DropdownMenu,
+  DropdownToggle,
 } from "reactstrap";
 import { logout } from "../../actions/user";
 import "./style.scss";
@@ -13,6 +13,9 @@ import "./style.scss";
 function Header(props) {
   const isLogin = useSelector((state) => state.user.isLogin);
   const currentUser = useSelector((state) => state.user.currentUser);
+  const categories = useSelector((state) => state.categories);
+
+  const carts = useSelector((state) => state.carts);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const toggle = () => setDropdownOpen((prevState) => !prevState);
   const dispatch = useDispatch();
@@ -78,8 +81,11 @@ function Header(props) {
                     {/* SUA THANH SELECT */}
                     <select className="mr-2 form-control" defaultValue="all">
                       <option value="all">Tất Cả</option>
-                      <option value="clothes">Áo Quần</option>
-                      <option value="shoes">Giày dep</option>
+                      {categories.map((category) => (
+                        <option value={`${category.id}`} key={`${category.id}`}>
+                          {category.name}
+                        </option>
+                      ))}
                     </select>
                   </div>
                   <input
@@ -105,7 +111,7 @@ function Header(props) {
                     <i className="fa fa-shopping-cart"></i>
                   </Link>
                   <span className="badge badge-pill badge-danger notify">
-                    0
+                    {carts.length}
                   </span>
                 </div>
 

@@ -1,15 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Product from "./../../../../shares/Product";
+import Product from "../../../../shares/Product";
 import { Link } from "react-router-dom";
 
 function ReComment(props) {
-  const { products, productId } = props;
-
-  return products ? (
+  const { products, productId, category } = props;
+  return products.length > 1 ? (
     <section className="section-name padding-y-sm">
       <header className="section-heading">
-        <Link to="/shops" className="btn btn-outline-primary float-right">
+        <Link
+          to={`/shops?category=${category}`}
+          className="btn btn-outline-primary float-right"
+        >
           Xem thêm
         </Link>
         <h3 className="section-title">Các sản phẩm liên quan</h3>
@@ -28,13 +30,15 @@ function ReComment(props) {
 }
 
 ReComment.propTypes = {
-  Products: PropTypes.array,
+  products: PropTypes.array,
   productId: PropTypes.string,
+  category: PropTypes.number,
 };
 
 ReComment.defaultProps = {
-  Products: [],
+  products: [],
   productId: "",
+  category: 0,
 };
 
 export default ReComment;

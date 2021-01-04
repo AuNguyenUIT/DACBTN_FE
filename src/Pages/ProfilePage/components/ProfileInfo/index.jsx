@@ -20,16 +20,15 @@ const profileSchema = Yup.object().shape({
 });
 function ProfileInfo(props) {
   const { currentUser, handleUpdateProfile } = props;
-
   const [provinces, setProvinces] = useState([]);
-  const provinceOptions = provinces.map((province) => ({
-    value: province.ProvinceID,
-    label: province.ProvinceName,
-  }));
   const [selectProvince, setSelectProvince] = useState({
     label: "",
     value: "",
   });
+  const provinceOptions = provinces.map((province) => ({
+    value: province.ProvinceID,
+    label: province.ProvinceName,
+  }));
 
   const [districts, setDistricts] = useState([]);
   const districtsOption = districts.map((districts) => ({
@@ -48,10 +47,12 @@ function ProfileInfo(props) {
       const data = res.data.data.find((province) => {
         return province.ProvinceID === currentUser.province;
       });
-      setSelectProvince({
-        value: data.ProvinceID,
-        label: data.ProvinceName,
-      });
+      try {
+        setSelectProvince({
+          value:data? data.ProvinceID:"",
+          label:data? data.ProvinceName:"",
+        });
+      } catch (error) {}
     });
   }, []);
 
@@ -62,10 +63,14 @@ function ProfileInfo(props) {
       const data = res.data.data.find((district) => {
         return district.DistrictID === currentUser.district;
       });
-      setSelectDistrict({
-        value: data.DistrictID,
-        label: data.DistrictName,
-      });
+      try {
+        setSelectDistrict({
+          value: data ? data.DistrictID : "",
+          label: data ? data.DistrictName : "",
+        });
+      } catch (error) {
+        console.log(error);
+      }
     });
   }, []);
 

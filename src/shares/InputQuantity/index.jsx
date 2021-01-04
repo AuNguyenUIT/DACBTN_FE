@@ -18,7 +18,7 @@ function InputQuantity(props) {
           type="button"
           name="button-minus"
           onClick={() => {
-            if (inputEl.current.value > 0) {
+            if (inputEl.current.value > 1) {
               setValue(--inputEl.current.value);
             }
           }}
@@ -33,11 +33,8 @@ function InputQuantity(props) {
         value={va}
         ref={inputEl}
         onChange={(event) => {
-          if (event.target.value > max) {
-            setValue(max);
-          } else {
-            setValue(event.target.value);
-          }
+          if (event.target.value > 0) setValue(event.target.value);
+          else setValue(1);
         }}
       />
       <div className="input-group-append">
