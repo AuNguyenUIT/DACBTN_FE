@@ -38,7 +38,7 @@ function CheckoutPage(props) {
       })
       .then(() => {
         dispatch(emptyCart());
-        history.push("/order-history");
+        history.push("/orders-history");
       });
   };
   return (

@@ -2,32 +2,38 @@ import React from "react";
 import PropTypes from "prop-types";
 
 function InfoCustomer(props) {
+  const { order } = props;
   return (
     <div className="row">
       <div className="col-md-4">
         <h6 className="text-muted">Thanh toán</h6>
         <p>
-          Tạm tính: $356 <br />
-          Phí ship: $56 <br />
-          <span className="b">Tổng: $456 </span>
+          Tạm tính: {order.amount} <br />
+          Phí ship: {order.shipFee} <br />
+          <span className="b">Tổng: {order.amount + order.shipFee} </span>
         </p>
       </div>
       <div className="col-md-4">
         <h6 className="text-muted">Liên hệ</h6>
         <p>
-          Michael Jackson <br />
-          +1234567890 <br />
-          somename@gmail.com
+          {order.name} <br />
+          {order.phone} <br />
+          {order.email}
         </p>
       </div>
       <div className="col-md-4">
         <h6 className="text-muted">Địa chỉ giao hàng</h6>
-        <p>Home 123, Building name, Street abcd, Tashkent Uzbekistan</p>
+        <p>{order.address}</p>
       </div>
     </div>
   );
 }
 
-InfoCustomer.propTypes = {};
+InfoCustomer.propTypes = {
+  order: PropTypes.object,
+};
+InfoCustomer.defaultProps = {
+  order: {},
+};
 
 export default InfoCustomer;

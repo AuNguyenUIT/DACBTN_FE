@@ -3,17 +3,15 @@ import PropTypes from "prop-types";
 import MyOrder from "./MyOrder";
 
 function MyOrders(props) {
-  return (
-    <>
-      <MyOrder />
-      <MyOrder />
-      <MyOrder />
-      <MyOrder />
-      <MyOrder />
-    </>
-  );
+  const { orders } = props;
+  return orders.map((order, index) => <MyOrder key={index} order={order} />);
 }
 
-MyOrders.propTypes = {};
+MyOrders.propTypes = {
+  orders: PropTypes.array,
+};
+MyOrder.defaultProps = {
+  orders: [],
+};
 
 export default MyOrders;

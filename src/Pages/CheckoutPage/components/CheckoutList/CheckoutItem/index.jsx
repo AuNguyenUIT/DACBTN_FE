@@ -30,6 +30,8 @@ function CheckoutItem(props) {
         oid: idOrder,
         pid: product.id,
         price: product.price,
+        size: cart.size,
+        color: cart.color,
         quantity: cart.quantity,
       };
       addDetailOrder(detail).then(() => {

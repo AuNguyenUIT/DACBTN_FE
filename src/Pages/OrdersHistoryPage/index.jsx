@@ -1,10 +1,18 @@
-import React from "react";
-import PropTypes from "prop-types";
-import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Breadcrumb, BreadcrumbItem } from "reactstrap";
+import { getOrders } from "../../apis/order";
 import MyOrders from "./components/MyOrders";
 
 function OrdersHistoryPage(props) {
+  const [orders, setOrders] = useState([]);
+  const currentUser = useSelector((state) => state.user.currentUser);
+  useEffect(() => {
+    getOrders({ uid: currentUser.id }).then((res) => {
+      setOrders(res.data);
+    });
+  }, []);
   return (
     <>
       <Breadcrumb>
@@ -17,7 +25,7 @@ function OrdersHistoryPage(props) {
       </Breadcrumb>
       <section className="section-content padding-y-sm">
         <div className="container">
-          <MyOrders />
+          <MyOrders orders={orders} />
         </div>
       </section>
     </>

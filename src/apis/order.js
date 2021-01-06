@@ -4,7 +4,7 @@ import qs from "query-string";
 
 const url = "orders";
 
-export const getCarts = (params = {}) => {
+export const getOrders = (params = {}) => {
   let queryParams = "";
   if (Object.keys(params).length > 0) {
     queryParams = `?${qs.stringify(params)}`;
