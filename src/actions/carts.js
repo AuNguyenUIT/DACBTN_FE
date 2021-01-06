@@ -52,3 +52,6 @@ export const deleteCartFailed = (payload) => ({
   payload,
 });
 
+export const emptyCart = () => ({
+  type: cartTypes.EMPTY_CART,
+});

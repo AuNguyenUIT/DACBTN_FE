@@ -150,23 +150,6 @@
     }
   ],
   "orders": [],
-  "carts": [
-    {
-      "size": "XS",
-      "color": "Hồng",
-      "quantity": 1,
-      "pid": "1",
-      "uid": "aunguyenuit@gmail.com",
-      "id": 13
-    },
-    {
-      "size": "S",
-      "color": "Hồng",
-      "quantity": 2,
-      "pid": "4",
-      "uid": "aunguyenuit@gmail.com",
-      "id": 14
-    }
-  ],
-  "detailOrder": {}
+  "carts": [],
+  "detailOrder": []
 }

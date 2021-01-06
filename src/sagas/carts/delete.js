@@ -1,11 +1,11 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import { deleteCartFailed, deleteCartSuccess } from "../../actions/carts";
-import { deletCart } from "../../apis/carts";
+import { deleteCart } from "../../apis/carts";
 import { DELETE_CART } from "../../constants/carts";
 
 
 async function deleteCartAsync(id){
-    const res = await deletCart(id);
+    const res = await deleteCart(id);
     if(res.status===200|| res.status===304){
         return id;
     }

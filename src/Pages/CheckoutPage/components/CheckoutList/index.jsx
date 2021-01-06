@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import CheckoutItem from "./CheckoutItem";
 
 function CheckoutList(props) {
-  const { carts, totalPrice } = props;
+  const { carts, totalPrice, idOrder } = props;
   let [total, setTotal] = useState(0);
   const price = (price) => {
     setTotal(total + price);
@@ -14,7 +14,7 @@ function CheckoutList(props) {
   return (
     <div className="row">
       {carts.map((cart, index) => (
-        <CheckoutItem cart={cart} key={index} price={price} />
+        <CheckoutItem cart={cart} key={index} price={price} idOrder={idOrder} />
       ))}
     </div>
   );
