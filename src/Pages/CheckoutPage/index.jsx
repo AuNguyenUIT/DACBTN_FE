@@ -27,7 +27,9 @@ function CheckoutPage(props) {
       email: data.email,
       address: data.address,
       name: data.surname + " " + data.name,
-      amount: price + 250000,
+      amount: price,
+      shipFee: 25000,
+      create: new Date(),
       status: 0,
     };
     addOrder(order)
