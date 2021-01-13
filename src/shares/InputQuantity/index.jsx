@@ -6,9 +6,10 @@ function InputQuantity(props) {
   const [va, setValue] = useState(quantity);
   const inputEl = useRef(null);
   useEffect(() => {
-    handleChangeQuantity(va);
+    if (va !== quantity) {
+      handleChangeQuantity(va);
+    }
   }, [va]);
-
   useEffect(() => {}, []);
   return (
     <div className="input-group mb-3 input-spinner">

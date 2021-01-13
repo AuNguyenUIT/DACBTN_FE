@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { emptyCart } from "../../actions/carts";
 import { addOrder } from "../../apis/order";
+import { toastSuccess } from "../../Helpers/toastHelper";
 import CheckoutInfo from "./components/CheckoutInfo";
 import CheckoutList from "./components/CheckoutList";
 import CheckoutTotal from "./components/CheckoutTotal";
@@ -12,7 +13,6 @@ import "./style.scss";
 function CheckoutPage(props) {
   const { history } = props;
   const currentUser = useSelector((state) => state.user.currentUser);
-  const isLogin = useSelector((state) => state.user.isLogin);
   const carts = useSelector((state) => state.carts);
   const [price, setPrice] = useState(0);
   const dispatch = useDispatch();
@@ -37,6 +37,7 @@ function CheckoutPage(props) {
         setIdOrder(res.data.id);
       })
       .then(() => {
+        toastSuccess('Đặt hàng thành công!')
         dispatch(emptyCart());
         history.push("/orders-history");
       });

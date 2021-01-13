@@ -25,7 +25,7 @@ function OrdersHistoryPage(props) {
       </Breadcrumb>
       <section className="section-content padding-y-sm">
         <div className="container">
-          <MyOrders orders={orders} />
+          <MyOrders orders={orders.reverse()} />
         </div>
       </section>
     </>

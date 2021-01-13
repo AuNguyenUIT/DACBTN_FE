@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { Breadcrumb, BreadcrumbItem } from "reactstrap";
 import { addCart, updateCart } from "../../actions/carts";
+import { hideLoading, showLoading } from "../../actions/loading";
 import { getCarts } from "../../apis/carts";
 import { getProduct, getProducts } from "../../apis/products";
 import Comments from "./components/Comments";
@@ -14,12 +15,20 @@ function DetailPage(props) {
   const { match, history } = props;
   const [product, setProduct] = useState({});
   const [productRe, setProductRe] = useState([]);
+  const dispatch = useDispatch();
   useEffect(() => {
+    dispatch(showLoading());
     getProduct(match.params.id)
       .then((res) => {
         setProduct(res.data);
+        setTimeout(() => {
+          dispatch(hideLoading());
+        }, 1000);
       })
       .catch((err) => {
+        setTimeout(() => {
+          dispatch(hideLoading());
+        }, 1000);
         history.push("/shops");
       });
   }, []);
@@ -30,13 +39,12 @@ function DetailPage(props) {
   }, [product.category]);
 
   const user = useSelector((state) => state.user);
-  const dispatch = useDispatch();
+
   const handleAddToCart = (data) => {
     if (!user.isLogin) {
       history.push("/login");
       return;
     }
-
     getCarts({
       color: data.color,
       size: data.size,

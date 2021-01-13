@@ -185,6 +185,30 @@
       "create": "2021-01-06T15:18:32.956Z",
       "status": 0,
       "id": 3
+    },
+    {
+      "uid": "aunguyenuit@gmail.com",
+      "phone": "0989520167",
+      "email": "aunguyenuit@gmail.com",
+      "address": "Thôn An Đồng - Xã Trung Sơn - Huyện Gio Linh - Tỉnh Quảng Trị",
+      "name": "Nguyễn Văn Âu",
+      "amount": 1800000,
+      "shipFee": 25000,
+      "create": "2021-01-08T03:08:05.773Z",
+      "status": 0,
+      "id": 4
+    },
+    {
+      "uid": "aunguyenuit@gmail.com",
+      "phone": "0989520167",
+      "email": "aunguyenuit@gmail.com",
+      "address": "Thôn An Đồng - Xã Trung Sơn - Huyện Gio Linh - Tỉnh Quảng Trị",
+      "name": "Nguyễn Văn Âu",
+      "amount": 900000,
+      "shipFee": 25000,
+      "create": "2021-01-09T12:31:58.921Z",
+      "status": 0,
+      "id": 5
     }
   ],
   "carts": [],
@@ -224,6 +248,24 @@
       "color": "Tím",
       "quantity": 1,
       "id": 4
+    },
+    {
+      "oid": 4,
+      "pid": "3",
+      "price": 450000,
+      "size": "S",
+      "color": "Trắng",
+      "quantity": 4,
+      "id": 5
+    },
+    {
+      "oid": 5,
+      "pid": "3",
+      "price": 450000,
+      "size": "S",
+      "color": "Trắng",
+      "quantity": 2,
+      "id": 6
     }
   ]
 }

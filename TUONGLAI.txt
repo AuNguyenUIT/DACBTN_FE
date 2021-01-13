@@ -1,0 +1,10 @@
+Xây dựng trang admin
+	Quản ly sp, category, bandner, mã giam giá
+	Quan ly user
+	Quan Ly don hang
+	Tông quan cua hang
+	xuat report	
+Reponse user
+Thay toan bang paypal
+Ma giam gia
+Tich hop nextjs -> SSR -> Tối ưu hóa SEO
